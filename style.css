@@ -1,0 +1,176 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #D4E6F1;
+    color: #2C3E50;
+}
+
+/* Login page */
+.login-page {
+    min-height: 100vh;
+    background-color: #D4E6F1;
+}
+
+.login-box {
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.login-box .card-header {
+    background-color: #1A5276;
+    color: white;
+    padding: 25px;
+    border: none;
+}
+
+.login-box .card-header h2 {
+    margin-bottom: 5px;
+}
+
+.login-box .card-header p {
+    margin-bottom: 0;
+}
+
+.login-box .card-body {
+    padding: 30px;
+}
+
+.login-btn {
+    background-color: #2980B9;
+    border: none;
+    padding: 10px;
+}
+
+.login-btn:hover {
+    background-color: #1A5276;
+}
+
+.demo-account {
+    background-color: #D4E6F1;
+    border-left: 4px solid #E67E22;
+    padding: 12px;
+    border-radius: 5px;
+}
+
+/* Dashboard */
+.dashboard-page {
+    background-color: #D4E6F1;
+}
+
+.portal-navbar {
+    background-color: #1A5276;
+}
+
+.welcome-section {
+    background-color: white;
+    padding: 25px;
+    border-left: 5px solid #E67E22;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.welcome-label {
+    color: #2980B9;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.welcome-section h1 {
+    color: #1A5276;
+    margin-bottom: 10px;
+}
+
+.welcome-date {
+    background-color: #D4E6F1;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Statistics cards */
+.stat-card {
+    border: none;
+    border-radius: 10px;
+    transition: 0.2s;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+}
+
+.stat-card .card-body {
+    padding: 20px;
+}
+
+.stat-icon {
+    font-size: 30px;
+}
+
+.stat-title {
+    color: #2980B9;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.stat-card h2 {
+    color: #1A5276;
+    font-weight: bold;
+}
+
+/* Activity table */
+.activity-card {
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.activity-card .card-header {
+    background-color: #2980B9;
+    color: white;
+    padding: 15px 20px;
+}
+
+.activity-card .card-header h4 {
+    margin: 0;
+}
+
+.activity-card .card-body {
+    padding: 20px;
+}
+
+/* Logout */
+#logoutBtn {
+    background-color: #E67E22;
+    border: none;
+}
+
+#logoutBtn:hover {
+    background-color: #C65D07;
+}
+
+/* Footer */
+.portal-footer {
+    background-color: #1A5276;
+    color: white;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .welcome-section {
+        display: block;
+    }
+
+    .welcome-date {
+        margin-top: 15px;
+        display: inline-block;
+    }
+
+    .login-box {
+        margin: 15px;
+    }
+}

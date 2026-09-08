@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Restaurant Dashboard</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- My CSS -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body class="dashboard-page">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark portal-navbar">
+
+        <div class="container">
+
+            <a class="navbar-brand" href="#">
+                🎓 Restaurant's Portal
+            </a>
+
+            <button class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#menu">
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+            <div class="collapse navbar-collapse" id="menu">
+
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#">
+                            Dashboard
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <span class="nav-link" id="navUsername"></span>
+                    </li>
+
+                    <li class="nav-item ms-lg-2">
+                        <button class="btn btn-danger btn-sm" id="logoutBtn">
+                            Logout
+                        </button>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+    <!-- Main Content -->
+    <main class="container py-4">
+
+        <!-- Welcome Section -->
+        <div class="welcome-section mb-4">
+
+            <div>
+                <p class="welcome-label">RESTAURANTS DASHBOARD</p>
+
+                <h1 id="greeting">Welcome!</h1>
+
+                <p>
+                    Hello, <strong id="studentName"></strong>.
+                    Here is your restaurants overview.
+                </p>
+            </div>
+
+            <div class="welcome-date">
+                <span id="currentDate"></span>
+            </div>
+
+        </div>
+
+
+        <!-- Statistics Cards -->
+        <div class="row g-4">
+
+            <!-- GPA -->
+            <div class="col-sm-6 col-lg-3">
+
+                <div class="card stat-card h-100 shadow-sm">
+
+                    <div class="card-body">
+
+                        <div class="stat-icon">📊</div>
+
+                        <p class="stat-title">Orders</p>
+
+                        <h2 id="gpaValue">120</h2>
+
+                        <small></small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Courses -->
+            <div class="col-sm-6 col-lg-3">
+
+                <div class="card stat-card h-100 shadow-sm">
+
+                    <div class="card-body">
+
+                        <div class="stat-icon">📚</div>
+
+                        <p class="stat-title">Revenue</p>
+
+                        <h2 id="coursesValue">0</h2>
+
+                        <small></small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Assignments -->
+            <div class="col-sm-6 col-lg-3">
+
+                <div class="card stat-card h-100 shadow-sm">
+
+                    <div class="card-body">
+
+                        <div class="stat-icon">📝</div>
+
+                        <p class="stat-title">Tables</p>
+
+                        <h2 id="assignmentsValue">0</h2>
+
+                        <small></small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Attendance -->
+            <div class="col-sm-6 col-lg-3">
+
+                <div class="card stat-card h-100 shadow-sm">
+
+                    <div class="card-body">
+
+                        <div class="stat-icon">📅</div>
+
+                        <p class="stat-title">Popular Dish</p>
+
+                        <h2 id="attendanceValue">0%</h2>
+
+                        <small>Current popular dish</small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Lab 4 Inventory Controls -->
+        <section class="card shadow-sm mt-4">
+
+            <div class="card-body">
+
+                <h4 class="mb-3">Inventory Management</h4>
+
+                <div class="row g-3">
+
+                    <!-- Search -->
+                    <div class="col-md-4">
+                        <label for="searchInput" class="form-label">
+                            Search Product
+                        </label>
+
+                        <input type="text"
+                               id="searchInput"
+                               class="form-control"
+                               placeholder="Search by product name or SKU">
+                    </div>
+
+
+                    <!-- Category -->
+                    <div class="col-md-3">
+                        <label for="categoryFilter" class="form-label">
+                            Category
+                        </label>
+
+                        <select id="categoryFilter" class="form-select">
+                            <option value="all">All Categories</option>
+                        </select>
+                    </div>
+
+
+                    <!-- Stock Status -->
+                    <div class="col-md-3">
+                        <label for="stockFilter" class="form-label">
+                            Stock Status
+                        </label>
+
+                        <select id="stockFilter" class="form-select">
+                            <option value="all">All Status</option>
+                            <option value="in stock">In Stock</option>
+                            <option value="low stock">Low Stock</option>
+                            <option value="out of stock">Out of Stock</option>
+                        </select>
+                    </div>
+
+
+                    <!-- Export -->
+                    <div class="col-md-2 d-flex align-items-end">
+
+                        <button id="exportBtn"
+                                class="btn btn-primary w-100">
+                            Export CSV
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Low Stock Alert -->
+        <div id="lowStockAlert" class="alert alert-warning mt-4">
+            <strong>Low Stock Alert:</strong>
+            <span id="lowStockMessage">
+                Checking inventory...
+            </span>
+        </div>
+
+
+        <!-- Charts -->
+        <section class="row g-4 mt-1">
+
+            <!-- Inventory Value Chart -->
+            <div class="col-lg-6">
+
+                <div class="card shadow-sm h-100">
+
+                    <div class="card-header">
+                        <h4 class="mb-0">
+                            Inventory Value by Category
+                        </h4>
+                    </div>
+
+                    <div class="card-body">
+                        <canvas id="inventoryChart"></canvas>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Stock Status Chart -->
+            <div class="col-lg-6">
+
+                <div class="card shadow-sm h-100">
+
+                    <div class="card-header">
+                        <h4 class="mb-0">
+                            Stock Status
+                        </h4>
+                    </div>
+
+                    <div class="card-body">
+                        <canvas id="stockChart"></canvas>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Inventory Table -->
+        <section class="card shadow-sm mt-4">
+
+            <div class="card-header">
+                <h4 class="mb-0">Inventory List</h4>
+            </div>
+
+            <div class="card-body">
+
+                <div class="table-responsive">
+
+                    <table class="table table-hover align-middle">
+
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>SKU</th>
+                                <th>Category</th>
+                                <th>Quantity</th>
+                                <th>Unit Price</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="inventoryTable">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Recent Activity -->
+        <div class="card activity-card shadow-sm mt-4">
+
+            <div class="card-header">
+                <h4>Recent Orders</h4>
+            </div>
+
+            <div class="card-body">
+
+                <div class="table-responsive">
+
+                    <table class="table table-hover">
+
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Order ID</th>
+                                 <th>Name</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="activityTable">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer class="portal-footer text-center py-3 mt-4">
+
+        <small>
+            © 2026 Restaurant Management System
+        </small>
+
+    </footer>
+
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- My JavaScript -->
+    <script src="js/dataManager.js"></script>
+    <script src="js/dashboard.js"></script>
+
+</body>
+
+</html>
